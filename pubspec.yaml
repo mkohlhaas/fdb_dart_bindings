@@ -1,0 +1,32 @@
+name: fdb_dart_bindings
+description: Dart Bindings to FoundationDB
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: ^3.1.3
+
+dependencies:
+  ffi: ^2.1.0
+  # path: ^1.8.0
+
+dev_dependencies:
+  ffigen: ^9.0.1
+  lints: ^2.0.0
+  test: ^1.21.0
+
+ffigen:
+  name: 'FDBC'
+  description: 'FoundationDB bindings'
+  output: 'lib/generated_bindings.dart'
+  headers:
+    entry-points:
+      - '/usr/include/foundationdb/fdb_c.h'
+  comments:
+    style: any
+    length: full
+  functions:
+    include:
+      - fdb_.*
+  compiler-opts:
+    - '-D FDB_USE_LATEST_API_VERSION'
